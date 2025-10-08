@@ -51,7 +51,6 @@ export default function TelaTarefas() {
   };
 
   function handleToggle(tarefa) {
-    console.log("toggle executado", tarefa);
     updateMutation.mutate({
       ...tarefa,
       concluida: !tarefa.concluida,
@@ -66,7 +65,7 @@ export default function TelaTarefas() {
     <View style={styles.container}>
       <View style={styles.inputView}>
         <TextInput
-          style={styles}
+          style={styles.input} // <<-- CORREÇÃO 1 AQUI
           placeholder="Descrição"
           value={descricao}
           onChangeText={setDescricao}
@@ -77,7 +76,7 @@ export default function TelaTarefas() {
         style={{ flex: 1, width: "100%" }}
         contentContainerStyle={styles.list}
         data={data}
-        keyExtractor={(item) => item.objectId}
+        keyExtractor={(item) => item.objectId} // <<-- CORREÇÃO 2 AQUI
         renderItem={({ item }) => (
           <CardTarefa
             tarefa={item}
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    width: "100%",
+    width: "85%", // Ajustado para dar espaço ao botão
     padding: 5,
   },
   inputView: {
